@@ -1,0 +1,83 @@
+{
+  // insure there is no special characters neither spaces in table name but add the column name like the db
+  "data_schema": {
+    "name": "TAABLE_NAME",
+    "mode": "EXCLUDE",
+
+    "fields": [
+
+      {
+        "name": "COLUMN 1",
+        "type": "STRING",
+        "privacy": "BASIC",
+        "consistency": "REQUIRED" //IF IT IS A PRIMARY KEY OR HAVE A NOT NULL  CONISTRAIN 
+      },
+      {
+        "name": "COLUMN 2",
+        "type": "STRING",
+        "privacy": "BASIC",
+        "consistency": "NULLABLE"
+      },
+      {
+        "name": "COLUMN 3",
+        "type": "BOOLEAN",
+        "privacy": "BASIC",
+        "consistency": "NULLABLE"
+      },
+      {
+        "name": "COLUMN 4",
+        "type": "STRING",
+        "privacy": "BASIC",
+        "consistency": "NULLABLE"
+      },
+      {
+        "name": "COLUMN 5",
+        "type": "INTEGER",
+        "privacy": "BASIC",
+        "consistency": "NULLABLE"
+      },
+      {
+        "name": "COLUMN 6",
+        "type": "DECIMAL",
+        "privacy": "BASIC",
+        "consistency": "NULLABLE"
+      }
+      // ADD ALL COULMUNS WITH THEIR DATA TYPE
+    ]
+    // NOTE:THE DATA TYPE IS BASED ON THE DOCUMENTION 
+  },
+  "metadata": {
+
+    "wbl": "ADD REQUIRED WBL",
+
+    "data_domains": [ "ADD REQUIRED DOMAIN" ],
+
+    "sub_domain_ids": [ "ADD REQUIRED SUBDOMAIN" ],
+
+    "dataset": { "name": "ADD REQUIRED DATASET" },
+
+    "confidentiality": "RESTRICTED",
+
+    "source": "YOUR DATA SOURCE",
+
+    "digital_it_team": {
+      "name": "ADD REQUIRED NAME",
+      "email": "ADD REQUIRED EMAIL"
+    },
+
+    "initiative": "ADD REQUIRED INITIATIVE",
+
+    "hub": "ADD REQUIRED HUB",
+
+    "data_owner": {
+      "name": "ADD REQUIRED NAME ",
+      "email": "ADD REQUIRED EMAIL"
+    },
+
+    "glue": {
+      "database_name": "REQUIRED DATABASE NAME",
+      "table_name": "ADD TABLE NAME"
+    }
+
+  }
+}

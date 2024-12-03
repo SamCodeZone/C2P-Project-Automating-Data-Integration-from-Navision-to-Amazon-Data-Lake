@@ -1,0 +1,5 @@
+{
+  "api_base_url": "ADD THE REQUIRED API URL",
+  "api_key": "ADD THE REQUIRED API KEY",
+  "cert_path": "ADD THE PATHE FOR THE CERTIFICATE"
+}

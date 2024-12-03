@@ -1,0 +1,199 @@
+                                              C2P Project Documentation
+
+ 
+                                                   Introduction
+
+The C2P project aims to automate the extraction of data
+from a Navision database and store it in Amazon's data lake as Parquet files using Python scripts and SSIS packages.
+
+Scope:
+This solution facilitates seamless data integration, 
+improving accessibility and scalability for analytics and reporting purposes.
+                                                 Project Objectives
+
+Extract data from the Navision database in a structured and efficient manner.
+
+Convert the data into Parquet format for optimized storage and processing.
+
+Ingest the data into Amazon's data lake for long-term storage and downstream usage.
+                                                 Tools & Technologies
+Database: Navision
+
+Programming Language: Python
+
+File Format: Parquet
+
+Cloud Storage: Amazon S3 (Data Lake)
+
+ETL Tool: SSIS (SQL Server Integration Services)
+
+
+                              System Architecture
+Provide a diagram or description of the workflow
+ 
+      https://app.diagrams.net/#G1aX0BawEtLQJthBW_tb6yXlnbwDWrtH92#%7B%22pageId%22%3A%22wOGju77ypj_HA4Ndk1Sp%22%7D
+
+                                                 Installation & Setup
+
+INSTALL ALL REQUIRED PYTHON LIBARIRIES BACKAGES OFFLINE ON THE SERVER(pandas, pyodbc, pyarrow).
+Setup Steps
+Clone the C2P repository.
+
+Configure the database connection settings in the Python script.
+
+Ensure AWS S3 buckets are created and accessible.
+
+Deploy and test SSIS packages.
+                                                   
+                                                 FIRST RUN 
+CREATE FLOW SCHEMA (flow.json)MATCHING THE DATA TYPE AND COLUMN NAMES FROM NAV.
+
+UPDATE THE (jop.json) WITH THE REQUIRED FLOW ID.
+
+RUN (createflow.py) SCRIPT 
+
+RUN (Ingestscript.py) SCRIPT if the running from the script modfiy max_timestamp =0
+
+
+                                                 SCRIPT Usage
+
+Running the Script
+Pre-requisites:
+
+Ensure all required configurations (SQL connection and data lake settings) are correctly set in their respective JSON files.
+
+
+Place these JSON files in their defined paths.
+
+Steps to Run:
+
+Navigate to the directory containing the script.
+
+
+Run the Python script(FROM FOLDER OR SSIS) WHEN RUNNIG FROM SSIS ENSURE TO CHANGE THE MAX TIMESTAMP VARIABLE TO EQUAL max_timestamp =sys.argv[1] 
+
+script performs the following tasks:
+Database Connection: Establishes a connection to the Navision SQL database and retrieves the schema and data for the specified table.
+
+
+Data Type Mapping: Dynamically maps SQL data types to pandas-compatible types for accurate data processing.
+
+
+Data Retrieval: Fetches records that have a timestamp greater than the last stored value.
+
+Converts and handles timestamp and Picture columns to ensure compatibility with the data lake.
+
+
+Parquet Conversion: Converts the processed data into a Parquet format using Apache Arrow, ensuring schema compliance.
+Timestamp Handling: Decodes the timestamp from the retrieved records,
+
+updates the local database with the latest timestamp, and logs the record count.
+
+
+Data Lake Ingestion:
+Creates a job request to the data lake API and retrieves a Pre-signed URL for uploading.
+
+
+Uploads the Parquet file to Amazon's data lake via an HTTPS PUT request.
+
+
+Job Tracking: Logs the job ID in the local database for tracking purposes.
+
+
+Output:
+
+Generates a Parquet file and uploads it to Amazon's data lake.
+
+
+Updates the local database with the new timestamp and job information.
+
+
+Main Functions Explained
+SQL Connection Setup:
+
+Reads connection details from a configuration JSON file and establishes connections to the main database and update server.
+
+
+Schema and Data Mapping:
+
+Retrieves table schema from the SQL database dynamically.
+
+
+Maps SQL data types to pandas data types for smooth processing.
+
+
+Timestamp and Data Handling:
+
+Converts timestamp to a consistent base64 format.
+
+
+Sets incompatible data types (e.g., Picture) to null for compatibility with the data lake.
+
+
+Parquet File Generation:
+
+Converts the pandas DataFrame to an Apache Arrow Table.
+
+
+Writes the table to an in-memory Parquet file using microsecond precision.
+
+
+Data Lake Integration:
+
+Communicates with the data lake API to create an ingestion job and uploads the Parquet file using a secure HTTPS request.
+
+
+Local Database Updates:
+
+Updates the database with the latest timestamp and the number of records processed.
+Logs the data lake job ID for reference.
+After the ingestion take the job ID and check the ingestion as the diagram provided.
+
+                                                    Challenges Faced During the Project
+
+1-Choosing the File Format:
+Initially, CSV was chosen as the file format during the pre-production phase. 
+
+However, it caused conflicts due to its row-by-row reading nature. 
+
+Some rows contained special characters in specific columns, which led to parsing errors and inconsistencies.
+
+
+Solution:
+We switched to Parquet, which processes data column-by-column.
+
+This not only resolved the conflicts caused by special characters but also provided better compression and data integrity.
+
+
+2-Handling Multiple Credential Files:
+Managing credentials was a challenging aspect of the project.
+
+Initially, all credentials for the SQL connections and the data lake were stored in a single JSON file.
+ 
+This approach made it difficult to maintain clarity and security, especially when handling updates or debugging connection issues.
+
+
+
+Solution: 
+We separated the credentials into two JSON files:
+SQL Configuration File: Stores connection details for the main SQL database and update server.
+
+
+Data Lake Configuration File: Contains API URLs, keys, and certificate paths for the data lake.
+This separation enhanced security, 
+
+made the configuration files easier to manage, and improved the overall organization.
+
+
+Advantages of Using Parquet:
+Switching to Parquet not only resolved data conflicts but also significantly improved processing speed. 
+
+By working with a columnar storage format, data retrieval and transformations became faster, making the overall ingestion pipeline more efficient.
+
+
+                                                              PATHS FOR EACH FOLDER 
+
+PYTHON SCRIPTS: E:\DataLake_Project
+CONFIGURATION: E:\DataLake_Project
+SSIS PROJECT: E:\EMAD\Datalake\REQ a job and post data v2 direct from NAV to DATALAKE With TimeStamp
+CHECK INGESTION STATUS: E:\EMAD\Datalake\Check ingestion status.py

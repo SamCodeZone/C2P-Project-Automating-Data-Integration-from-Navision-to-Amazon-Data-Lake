@@ -1,0 +1,15 @@
+{
+  "flow": {
+    "id": "ADD REQUIRED FLOW ID"
+  },
+  "data_format": {
+    "type": "application/parquet" // SPECIFICED FOR PARAQUET CHANGE IT IF  YOU USE ANY OTHER TYPE OF FILES EX:CSV
+  },
+  "payload": {
+    "window_end": "ADD REQUIRED TIME",
+    "mode": "UPSERT", // CHOOSE THE MODE BETWEEN FULL OR UPSERT AND IF UPSERT PUT YOUR PRIMARY KEY AS FOLLOWS
+    "update_key": [
+      "YOUR PRIMARY KEY" // IF THERE IS A COMPOSITE PRIMARY KEY ADD ALL THE PRIMARY KEYS
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "sqlconnection": {
+    "server": "SERVER NAME",
+    "database": "DATABSE NAME",
+    "Trusted_Connection": "yes"
+  },
+  "updateconnection": {
+    "update_server": "SERVERNAME",
+    "update_database": "DATABASE NAME",
+    "username": "ADD USERNAME",
+    "password": "ADD PASSWORD"
+  }
+}
