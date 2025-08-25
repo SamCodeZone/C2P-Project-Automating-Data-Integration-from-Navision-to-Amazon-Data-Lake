@@ -10,9 +10,9 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Configuration for the API and database
-API_BASE_URL = "https://api-dev.725293641797.eu.aws.airliquide.com/v3"
-API_KEY = "qGmqGo79gl8eYiLA1scV721ElkvIWD3y8nrSXss1"
-cert_path = r"E:\Software\ROOTCertificate\Air_Liquide_Root_CA.crt"
+API_BASE_URL = "url"
+API_KEY = "Key"
+cert_path = r"path"
 
 # Database connection details (same as in the ingestion script)
 update_config_path = Path('E:/DataLake_Project/dev/Configeration/sqlconnection.json')
