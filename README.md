@@ -50,3 +50,14 @@ Database: Navision
 Programming: Python (pandas, pyodbc, pyarrow, requests)
 ETL: SSIS
 Cloud Storage: Amazon S3
+
+<img width="1360" height="451" alt="1" src="https://github.com/user-attachments/assets/cadaa715-057d-470d-8ff4-10a219babd20" />
+
+<img width="1357" height="414" alt="2" src="https://github.com/user-attachments/assets/ba004f9d-c3ae-4262-9d0d-3e433a0e7157" />
+
+<img width="1361" height="622" alt="3" src="https://github.com/user-attachments/assets/5a09814a-554e-40df-879c-441481bca873" />
+
+<img width="1600" height="747" alt="s-blob-v1-IMAGE-AY0Fki2DnuQ" src="https://github.com/user-attachments/assets/22ae9f79-f826-47bd-979d-aee0af725621" />
+
+
+
